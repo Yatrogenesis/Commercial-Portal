@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yatrogenesis - Enterprise AI Solutions</title>
+    <meta name="description" content="40+ Enterprise AI Solutions for Business Transformation. From Quantum Computing to Legal Compliance, Trading to Quality Management.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --accent: #10b981;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><circle cx="100" cy="100" r="50" fill="rgba(255,255,255,0.1)"/><circle cx="900" cy="400" r="80" fill="rgba(255,255,255,0.1)"/><circle cx="600" cy="200" r="60" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5em;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            font-size: 1.2em;
+            color: #64748b;
+        }
+
+        /* Product Tiers */
+        .tier-section {
+            margin-bottom: 80px;
+        }
+
+        .tier-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+        }
+
+        .tier-enterprise { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; }
+        .tier-professional { background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; }
+        .tier-business { background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; }
+        .tier-developer { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(99, 102, 241, 0.2);
+            border-color: var(--primary);
+        }
+
+        .product-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .product-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .product-card p {
+            color: #64748b;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .product-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            font-size: 0.95em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            flex: 1;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--dark), #334155);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5em; }
+            .stats { gap: 30px; }
+            .product-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>🚀 Yatrogenesis</h1>
+            <p>Enterprise AI Solutions for the Future of Business</p>
+            <p style="font-size: 1.1em; opacity: 0.9;">40+ Production-Ready AI Products | From Quantum Computing to Legal Compliance</p>
+
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number">40+</span>
+                    <span class="stat-label">AI Products</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Industry Verticals</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Open Source</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enterprise Tier -->
+    <div class="container">
+        <div class="tier-section">
+            <span class="tier-badge tier-enterprise">⭐ ENTERPRISE TIER</span>
+            <div class="section-header">
+                <h2>Mission-Critical Enterprise Solutions</h2>
+                <p>Production-grade systems for large organizations</p>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-icon">📈</div>
+                    <h3>AION-Quant Trader Enterprise</h3>
+                    <p>AI-powered algorithmic trading platform with real-time market analysis, risk management, and automated execution.</p>
+                    <div class="product-tags">
+                        <span class="tag">AI Trading</span>
+                        <span class="tag">Real-time</span>
+                        <span class="tag">Risk Mgmt</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/aion-quant-trader/" class="btn btn-primary">Live Demo</a>
+                        <a href="#contact" class="btn btn-secondary">Contact Sales</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🏭</div>
+                    <h3>Enterprise ERP System</h3>
+                    <p>Complete ERP solution with AI-driven analytics, inventory management, CRM, and financial planning modules.</p>
+                    <div class="product-tags">
+                        <span class="tag">ERP</span>
+                        <span class="tag">Analytics</span>
+                        <span class="tag">Multi-tenant</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/erp-system/" class="btn btn-primary">Live Demo</a>
+                        <a href="#contact" class="btn btn-secondary">Contact Sales</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">✅</div>
+                    <h3>ISO 9001:2006 QMS Universal</h3>
+                    <p>Complete Quality Management System compliant with ISO 9001:2006 standards. Document control, audit trails, CAPA.</p>
+                    <div class="product-tags">
+                        <span class="tag">ISO 9001</span>
+                        <span class="tag">Compliance</span>
+                        <span class="tag">Audit</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/iso-9001-qms/" class="btn btn-primary">Live Demo</a>
+                        <a href="#contact" class="btn btn-secondary">Contact Sales</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🏛️</div>
+                    <h3>AION-CR Legal Compliance</h3>
+                    <p>ML-powered legal compliance classifier + AI document generation for GDPR, CCPA, SOX, HIPAA, PCI-DSS, NIST.</p>
+                    <div class="product-tags">
+                        <span class="tag">Legal AI</span>
+                        <span class="tag">GDPR</span>
+                        <span class="tag">HIPAA</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="https://huggingface.co/spaces/Yatro/AION-CR_Legal_Compliance-Demo" class="btn btn-primary" target="_blank">Live Demo</a>
+                        <a href="#contact" class="btn btn-secondary">Contact Sales</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🖼️</div>
+                    <h3>PhotoVault Enterprise</h3>
+                    <p>Enterprise-grade digital asset management with AI tagging, facial recognition, and advanced search capabilities.</p>
+                    <div class="product-tags">
+                        <span class="tag">DAM</span>
+                        <span class="tag">AI Tagging</span>
+                        <span class="tag">Cloud</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/photovault/" class="btn btn-primary">Live Demo</a>
+                        <a href="#contact" class="btn btn-secondary">Contact Sales</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🔐</div>
+                    <h3>SASVFS Enterprise</h3>
+                    <p>Secure Archive System with Virtual File System. Military-grade encryption, versioning, and compliance features.</p>
+                    <div class="product-tags">
+                        <span class="tag">Security</span>
+                        <span class="tag">Encryption</span>
+                        <span class="tag">Archive</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/sasvfs/" class="btn btn-primary">Live Demo</a>
+                        <a href="#contact" class="btn btn-secondary">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Tier -->
+        <div class="tier-section">
+            <span class="tier-badge tier-professional">💼 PROFESSIONAL TIER</span>
+            <div class="section-header">
+                <h2>Professional Creative & Development Tools</h2>
+                <p>Advanced tools for professionals and studios</p>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-icon">🎨</div>
+                    <h3>QuantumCanvas Studio</h3>
+                    <p>Next-gen digital art creation platform with AI-assisted design, procedural generation, and quantum-inspired algorithms.</p>
+                    <div class="product-tags">
+                        <span class="tag">AI Art</span>
+                        <span class="tag">Procedural</span>
+                        <span class="tag">Studio</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/quantumcanvas/" class="btn btn-primary">Live Demo</a>
+                        <a href="#contact" class="btn btn-secondary">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">📄</div>
+                    <h3>LaTeX Master Pro Enterprise</h3>
+                    <p>Professional LaTeX editor with real-time collaboration, AI-powered formatting, and enterprise template management.</p>
+                    <div class="product-tags">
+                        <span class="tag">LaTeX</span>
+                        <span class="tag">Collaboration</span>
+                        <span class="tag">AI</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/latex-master-pro/" class="btn btn-primary">Live Demo</a>
+                        <a href="#contact" class="btn btn-secondary">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🎤</div>
+                    <h3>Professional Studio Pro</h3>
+                    <p>Complete audio production suite with AI mastering, vocal processing, and multi-track recording capabilities.</p>
+                    <div class="product-tags">
+                        <span class="tag">Audio</span>
+                        <span class="tag">AI Master</span>
+                        <span class="tag">DAW</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/professional-studio/" class="btn btn-primary">Live Demo</a>
+                        <a href="#contact" class="btn btn-secondary">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🎙️</div>
+                    <h3>Karaoke Studio Pro</h3>
+                    <p>Professional karaoke production system with vocal removal, pitch correction, and synchronized lyrics display.</p>
+                    <div class="product-tags">
+                        <span class="tag">Karaoke</span>
+                        <span class="tag">Vocal AI</span>
+                        <span class="tag">Sync</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/karaoke-studio/" class="btn btn-primary">Live Demo</a>
+                        <a href="#contact" class="btn btn-secondary">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">📱</div>
+                    <h3>Voice Agenda Executive</h3>
+                    <p>AI-powered voice assistant for executives. Meeting scheduling, task management, and intelligent reminders.</p>
+                    <div class="product-tags">
+                        <span class="tag">Voice AI</span>
+                        <span class="tag">Executive</span>
+                        <span class="tag">Productivity</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/voice-agenda/" class="btn btn-primary">Live Demo</a>
+                        <a href="#contact" class="btn btn-secondary">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">📊</div>
+                    <h3>PDF Ultra-X</h3>
+                    <p>Advanced PDF processor with AI extraction, OCR, form recognition, and batch processing capabilities.</p>
+                    <div class="product-tags">
+                        <span class="tag">PDF</span>
+                        <span class="tag">OCR</span>
+                        <span class="tag">Batch</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/pdf-ultrax/" class="btn btn-primary">Live Demo</a>
+                        <a href="#contact" class="btn btn-secondary">Get Quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Business Tier -->
+        <div class="tier-section">
+            <span class="tier-badge tier-business">🏢 BUSINESS TIER</span>
+            <div class="section-header">
+                <h2>Business Intelligence & Marketing</h2>
+                <p>Smart solutions for growing businesses</p>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-icon">🎯</div>
+                    <h3>AutoMarketing AI</h3>
+                    <p>Automated marketing platform with AI content generation, social media scheduling, and performance analytics.</p>
+                    <div class="product-tags">
+                        <span class="tag">Marketing</span>
+                        <span class="tag">AI Content</span>
+                        <span class="tag">Automation</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/automarketing/" class="btn btn-primary">Live Demo</a>
+                        <a href="#contact" class="btn btn-secondary">Get Started</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🔬</div>
+                    <h3>AutoResearcher</h3>
+                    <p>AI-powered research assistant. Automated literature review, data extraction, and citation management.</p>
+                    <div class="product-tags">
+                        <span class="tag">Research</span>
+                        <span class="tag">AI</span>
+                        <span class="tag">Academic</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/autoresearcher/" class="btn btn-primary">Live Demo</a>
+                        <a href="#contact" class="btn btn-secondary">Get Started</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🧬</div>
+                    <h3>DNA Codec Advanced</h3>
+                    <p>DNA sequence encoding/decoding system with advanced compression and biological data analysis capabilities.</p>
+                    <div class="product-tags">
+                        <span class="tag">Biotech</span>
+                        <span class="tag">DNA</span>
+                        <span class="tag">Compression</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/dna-codec/" class="btn btn-primary">Live Demo</a>
+                        <a href="#contact" class="btn btn-secondary">Get Started</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🤖</div>
+                    <h3>NeuralEdge AI</h3>
+                    <p>Edge AI deployment platform. Deploy ML models on IoT devices with optimized inference and real-time updates.</p>
+                    <div class="product-tags">
+                        <span class="tag">Edge AI</span>
+                        <span class="tag">IoT</span>
+                        <span class="tag">Real-time</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/neuraledge/" class="btn btn-primary">Live Demo</a>
+                        <a href="#contact" class="btn btn-secondary">Get Started</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🌐</div>
+                    <h3>YatroNet</h3>
+                    <p>Next-generation networking framework with AI-optimized routing, QoS management, and security features.</p>
+                    <div class="product-tags">
+                        <span class="tag">Networking</span>
+                        <span class="tag">AI Router</span>
+                        <span class="tag">Security</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/yatronet/" class="btn btn-primary">Live Demo</a>
+                        <a href="#contact" class="btn btn-secondary">Get Started</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">⌚</div>
+                    <h3>YatroWatch</h3>
+                    <p>Smartwatch OS and development platform with health monitoring, AI fitness coaching, and app ecosystem.</p>
+                    <div class="product-tags">
+                        <span class="tag">Wearable</span>
+                        <span class="tag">Health</span>
+                        <span class="tag">AI Coach</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/yatrowatch/" class="btn btn-primary">Live Demo</a>
+                        <a href="#contact" class="btn btn-secondary">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Developer Tier -->
+        <div class="tier-section">
+            <span class="tier-badge tier-developer">👨‍💻 DEVELOPER TIER</span>
+            <div class="section-header">
+                <h2>Developer Tools & Frameworks</h2>
+                <p>Powerful tools for modern development teams</p>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-icon">📝</div>
+                    <h3>Markdown Viewer</h3>
+                    <p>Real-time Markdown editor with GitHub-flavored syntax, live preview, and export to multiple formats.</p>
+                    <div class="product-tags">
+                        <span class="tag">Markdown</span>
+                        <span class="tag">Editor</span>
+                        <span class="tag">Export</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/markdown-viewer/" class="btn btn-primary">Live Demo</a>
+                        <a href="https://github.com/Yatrogenesis" class="btn btn-secondary" target="_blank">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🛠️</div>
+                    <h3>Claude Tools</h3>
+                    <p>Developer toolkit for Claude AI integration. Pre-built components, API wrappers, and testing utilities.</p>
+                    <div class="product-tags">
+                        <span class="tag">AI SDK</span>
+                        <span class="tag">Claude</span>
+                        <span class="tag">Tools</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/claude-tools/" class="btn btn-primary">Live Demo</a>
+                        <a href="https://github.com/Yatrogenesis" class="btn btn-secondary" target="_blank">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🌍</div>
+                    <h3>GODO-R</h3>
+                    <p>GoDaddy domain management CLI with DNS automation, bulk operations, and monitoring capabilities.</p>
+                    <div class="product-tags">
+                        <span class="tag">DNS</span>
+                        <span class="tag">CLI</span>
+                        <span class="tag">Automation</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/godo-r/" class="btn btn-primary">Documentation</a>
+                        <a href="https://github.com/Yatrogenesis" class="btn btn-secondary" target="_blank">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🔧</div>
+                    <h3>GoDaddy DNS CLI</h3>
+                    <p>Command-line interface for GoDaddy DNS management. Batch updates, backups, and API integration.</p>
+                    <div class="product-tags">
+                        <span class="tag">DNS</span>
+                        <span class="tag">DevOps</span>
+                        <span class="tag">CLI</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/godaddy-dns-cli/" class="btn btn-primary">Documentation</a>
+                        <a href="https://github.com/Yatrogenesis" class="btn btn-secondary" target="_blank">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🔐</div>
+                    <h3>XenoDecoder</h3>
+                    <p>Advanced encoding/decoding toolkit with support for 50+ formats, encryption, and custom algorithms.</p>
+                    <div class="product-tags">
+                        <span class="tag">Encoding</span>
+                        <span class="tag">Crypto</span>
+                        <span class="tag">Security</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/xenodecoder/" class="btn btn-primary">Live Demo</a>
+                        <a href="https://github.com/Yatrogenesis" class="btn btn-secondary" target="_blank">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🧩</div>
+                    <h3>NOS Framework 2.0</h3>
+                    <p>Modular application framework with dependency injection, microservices support, and auto-scaling.</p>
+                    <div class="product-tags">
+                        <span class="tag">Framework</span>
+                        <span class="tag">Microservices</span>
+                        <span class="tag">DI</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/nos-framework/" class="btn btn-primary">Documentation</a>
+                        <a href="https://github.com/Yatrogenesis" class="btn btn-secondary" target="_blank">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🌐</div>
+                    <h3>YatroBrowser</h3>
+                    <p>Privacy-focused web browser with built-in ad blocking, tracker protection, and AI-powered security.</p>
+                    <div class="product-tags">
+                        <span class="tag">Browser</span>
+                        <span class="tag">Privacy</span>
+                        <span class="tag">Security</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/yatrobrowser/" class="btn btn-primary">Download</a>
+                        <a href="https://github.com/Yatrogenesis" class="btn btn-secondary" target="_blank">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🔒</div>
+                    <h3>Security Browser</h3>
+                    <p>Ultra-secure browser for sensitive operations. Sandboxing, VPN integration, and forensic mode.</p>
+                    <div class="product-tags">
+                        <span class="tag">Security</span>
+                        <span class="tag">Sandbox</span>
+                        <span class="tag">VPN</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="demos/security-browser/" class="btn btn-primary">Download</a>
+                        <a href="https://github.com/Yatrogenesis" class="btn btn-secondary" target="_blank">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🚀</div>
+                    <h3>Ectus-R Code Generation</h3>
+                    <p>AI-powered code generation platform. Multi-LLM orchestration, autonomous QA, and formal verification.</p>
+                    <div class="product-tags">
+                        <span class="tag">AI Codegen</span>
+                        <span class="tag">Multi-LLM</span>
+                        <span class="tag">QA</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="https://yatrogenesis.github.io/Ectus-R-Demo" class="btn btn-primary" target="_blank">Live Demo</a>
+                        <a href="https://github.com/Yatrogenesis/Ectus-R" class="btn btn-secondary" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Products (Collapsed) -->
+        <div class="tier-section">
+            <div class="section-header">
+                <h2>Additional Solutions</h2>
+                <p>Specialized tools for niche applications</p>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-icon">🏢</div>
+                    <h3>YatroSoft</h3>
+                    <p>Software development lifecycle management platform with AI code review and project analytics.</p>
+                    <div class="product-tags">
+                        <span class="tag">SDLC</span>
+                        <span class="tag">Management</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="#contact" class="btn btn-primary">Request Demo</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">💻</div>
+                    <h3>AI-OS</h3>
+                    <p>AI-native operating system with intelligent resource management and natural language interface.</p>
+                    <div class="product-tags">
+                        <span class="tag">OS</span>
+                        <span class="tag">AI</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="#contact" class="btn btn-primary">Request Demo</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🖥️</div>
+                    <h3>SACC-OS</h3>
+                    <p>Secure Access Control & Compliance OS for regulated industries and government applications.</p>
+                    <div class="product-tags">
+                        <span class="tag">Security</span>
+                        <span class="tag">Compliance</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="#contact" class="btn btn-primary">Request Demo</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🪞</div>
+                    <h3>NeuraMirror</h3>
+                    <p>Neural network visualization and debugging tool with interactive architecture exploration.</p>
+                    <div class="product-tags">
+                        <span class="tag">ML Debug</span>
+                        <span class="tag">Visualization</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="#contact" class="btn btn-primary">Request Demo</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">📚</div>
+                    <h3>NOM Capacitación</h3>
+                    <p>Training management system compliant with Mexican NOM standards for workplace training.</p>
+                    <div class="product-tags">
+                        <span class="tag">Training</span>
+                        <span class="tag">Compliance</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="#contact" class="btn btn-primary">Request Demo</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🔐</div>
+                    <h3>Topological Password Analysis</h3>
+                    <p>Advanced password security analysis using topological data analysis and pattern recognition.</p>
+                    <div class="product-tags">
+                        <span class="tag">Security</span>
+                        <span class="tag">Topology</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="#contact" class="btn btn-primary">Request Demo</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🛡️</div>
+                    <h3>SHSA</h3>
+                    <p>Secure Hash Storage & Authentication system with quantum-resistant algorithms.</p>
+                    <div class="product-tags">
+                        <span class="tag">Crypto</span>
+                        <span class="tag">Quantum-safe</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="#contact" class="btn btn-primary">Request Demo</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🎵</div>
+                    <h3>Noise Cancellation</h3>
+                    <p>Real-time AI-powered noise cancellation for professional audio and communication applications.</p>
+                    <div class="product-tags">
+                        <span class="tag">Audio AI</span>
+                        <span class="tag">Real-time</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="#contact" class="btn btn-primary">Request Demo</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🎹</div>
+                    <h3>Synth-U</h3>
+                    <p>Advanced software synthesizer with AI-powered sound design and modular architecture.</p>
+                    <div class="product-tags">
+                        <span class="tag">Synth</span>
+                        <span class="tag">AI Sound</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="#contact" class="btn btn-primary">Request Demo</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">📊</div>
+                    <h3>SECS ScoreGen</h3>
+                    <p>Automated scoring and evaluation system for educational and assessment applications.</p>
+                    <div class="product-tags">
+                        <span class="tag">Education</span>
+                        <span class="tag">Assessment</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="#contact" class="btn btn-primary">Request Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <h2>Ready to Transform Your Business?</h2>
+        <p>Contact our sales team to discuss enterprise licensing, custom development, or partnership opportunities.</p>
+        <div class="cta-buttons">
+            <a href="mailto:sales@yatrogenesis.com" class="btn btn-primary" style="display: inline-block;">📧 Contact Sales</a>
+            <a href="https://github.com/Yatrogenesis" class="btn btn-secondary" style="display: inline-block; background: white; color: var(--dark);" target="_blank">🔗 GitHub</a>
+            <a href="https://huggingface.co/Yatro" class="btn btn-secondary" style="display: inline-block; background: white; color: var(--dark);" target="_blank">🤗 HuggingFace</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Yatrogenesis</h4>
+                <p>Enterprise AI Solutions for the Future of Business</p>
+                <p style="margin-top: 15px; color: #94a3b8;">© 2025 Yatrogenesis. All rights reserved.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="#enterprise">Enterprise Tier</a></li>
+                    <li><a href="#professional">Professional Tier</a></li>
+                    <li><a href="#business">Business Tier</a></li>
+                    <li><a href="#developer">Developer Tier</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="https://github.com/Yatrogenesis" target="_blank">GitHub</a></li>
+                    <li><a href="https://huggingface.co/Yatro" target="_blank">HuggingFace</a></li>
+                    <li><a href="docs/">Documentation</a></li>
+                    <li><a href="api/">API Reference</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="about/">About Us</a></li>
+                    <li><a href="careers/">Careers</a></li>
+                    <li><a href="privacy/">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>Powered by GitHub Models • Built with ❤️ for the developer community</p>
+        </div>
+    </footer>
+</body>
+</html>
