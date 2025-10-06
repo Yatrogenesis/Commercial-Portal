@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantumCanvas Studio - AI-Powered Generative Art Platform</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #ec4899;
+            --secondary: #8b5cf6;
+            --accent: #f59e0b;
+            --dark: #1f2937;
+            --gray: #6b7280;
+            --light: #f3f4f6;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0f0f0f;
+            color: white;
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 25px 30px;
+            box-shadow: 0 4px 20px rgba(236,72,153,0.3);
+        }
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 20px;
+            padding: 0 20px;
+        }
+        .sidebar {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 25px;
+            height: fit-content;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .section-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #aaa;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            background: #2a2a2a;
+            border: 2px solid #3a3a3a;
+            border-radius: 8px;
+            color: white;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #333;
+        }
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .slider-container {
+            margin-bottom: 20px;
+        }
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 3px;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        button {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 10px;
+        }
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(236,72,153,0.4);
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .btn-secondary {
+            background: #2a2a2a;
+            border: 2px solid var(--primary);
+        }
+        .main-canvas {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .canvas-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #2a2a2a;
+        }
+        .canvas-title {
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+        .canvas-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .icon-btn {
+            background: #2a2a2a;
+            border: 2px solid #3a3a3a;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: auto;
+        }
+        .icon-btn:hover {
+            border-color: var(--primary);
+            background: #333;
+        }
+        .canvas-area {
+            background: #0f0f0f;
+            border: 2px dashed #3a3a3a;
+            border-radius: 12px;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .placeholder {
+            text-align: center;
+            color: #666;
+        }
+        .placeholder-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+        .generated-image {
+            max-width: 100%;
+            max-height: 600px;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        .info-box {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+            border-left: 4px solid var(--secondary);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+        .gallery {
+            margin-top: 30px;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .gallery-item {
+            background: #2a2a2a;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(236,72,153,0.3);
+        }
+        .loading-spinner {
+            border: 4px solid #333;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .stat-label {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 5px;
+        }
+        .style-preset {
+            background: #2a2a2a;
+            border: 2px solid #3a3a3a;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .style-preset:hover {
+            border-color: var(--primary);
+            background: #333;
+        }
+        .style-preset.active {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(236,72,153,0.2) 0%, rgba(139,92,246,0.2) 100%);
+        }
+        .preset-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .preset-desc {
+            font-size: 0.85em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                🎨 QuantumCanvas Studio
+                <span class="badge">AI-Powered</span>
+            </div>
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <span>6 AI Models</span>
+                <span>∞ Possibilities</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="info-box">
+                <strong>🔑 Setup:</strong> Get GitHub token at
+                <a href="https://github.com/settings/tokens" target="_blank" style="color: #60a5fa;">github.com/settings/tokens</a>
+            </div>
+
+            <div class="section-title">⚙️ Generation Settings</div>
+
+            <div class="form-group">
+                <label for="github-token">GitHub Token</label>
+                <input type="password" id="github-token" placeholder="github_pat_...">
+            </div>
+
+            <div class="form-group">
+                <label for="ai-model">AI Model</label>
+                <select id="ai-model">
+                    <option value="gpt-4o-mini">GPT-4o-mini</option>
+                    <option value="Mistral-Medium-3">Mistral Medium 3</option>
+                    <option value="Mistral-Small-3">Mistral Small 3</option>
+                    <option value="Phi-4">Phi-4</option>
+                    <option value="Meta-Llama-3.1-70B-Instruct">Llama 3.1 70B</option>
+                    <option value="Meta-Llama-3.1-8B-Instruct">Llama 3.1 8B</option>
+                </select>
+            </div>
+
+            <div class="section-title" style="margin-top: 25px;">🎭 Style Presets</div>
+
+            <div class="style-preset active" onclick="selectPreset('abstract')">
+                <div class="preset-name">Abstract Expressionism</div>
+                <div class="preset-desc">Bold colors, dynamic forms</div>
+            </div>
+
+            <div class="style-preset" onclick="selectPreset('cyberpunk')">
+                <div class="preset-name">Cyberpunk</div>
+                <div class="preset-desc">Neon, futuristic, dystopian</div>
+            </div>
+
+            <div class="style-preset" onclick="selectPreset('surreal')">
+                <div class="preset-name">Surrealism</div>
+                <div class="preset-desc">Dreamlike, impossible scenarios</div>
+            </div>
+
+            <div class="style-preset" onclick="selectPreset('minimalist')">
+                <div class="preset-name">Minimalist</div>
+                <div class="preset-desc">Simple, clean, geometric</div>
+            </div>
+
+            <div class="style-preset" onclick="selectPreset('photorealistic')">
+                <div class="preset-name">Photorealistic</div>
+                <div class="preset-desc">Hyper-detailed, lifelike</div>
+            </div>
+
+            <div class="section-title" style="margin-top: 25px;">📝 Prompt</div>
+
+            <div class="form-group">
+                <textarea id="prompt" placeholder="Describe your artwork... (e.g., 'A cosmic landscape with quantum particles forming galaxies')"></textarea>
+            </div>
+
+            <div class="slider-container">
+                <div class="slider-label">
+                    <label>Creativity</label>
+                    <span id="creativity-value">0.7</span>
+                </div>
+                <input type="range" id="creativity" min="0" max="1" step="0.1" value="0.7" oninput="updateValue('creativity')">
+            </div>
+
+            <div class="slider-container">
+                <div class="slider-label">
+                    <label>Detail Level</label>
+                    <span id="detail-value">0.8</span>
+                </div>
+                <input type="range" id="detail" min="0" max="1" step="0.1" value="0.8" oninput="updateValue('detail')">
+            </div>
+
+            <button id="generate-btn" onclick="generateArt()">
+                🎨 Generate Artwork
+            </button>
+
+            <button class="btn-secondary" onclick="randomPrompt()">
+                🎲 Random Prompt
+            </button>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="generated-count">0</div>
+                    <div class="stat-label">Generated</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="time">-</div>
+                    <div class="stat-label">Last Time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="model">GPT</div>
+                    <div class="stat-label">Model</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-canvas">
+            <div class="canvas-header">
+                <div class="canvas-title">Canvas</div>
+                <div class="canvas-actions">
+                    <button class="icon-btn" onclick="downloadArt()">💾 Save</button>
+                    <button class="icon-btn" onclick="shareArt()">🔗 Share</button>
+                    <button class="icon-btn" onclick="clearCanvas()">🗑️ Clear</button>
+                </div>
+            </div>
+
+            <div class="canvas-area" id="canvas">
+                <div class="placeholder">
+                    <div class="placeholder-icon">🎨</div>
+                    <h3>Your Masterpiece Awaits</h3>
+                    <p style="margin-top: 10px; color: #888;">
+                        Configure settings and click "Generate Artwork" to create AI-powered art
+                    </p>
+                </div>
+            </div>
+
+            <div class="gallery">
+                <div class="section-title">🖼️ Gallery</div>
+                <div class="gallery-grid" id="gallery">
+                    <!-- Gallery items will be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedPreset = 'abstract';
+        let generatedCount = 0;
+        let currentArtwork = null;
+
+        // Load saved token
+        const tokenInput = document.getElementById('github-token');
+        tokenInput.value = localStorage.getItem('gh_token') || '';
+        tokenInput.addEventListener('change', e => localStorage.setItem('gh_token', e.target.value));
+
+        const styleDescriptions = {
+            abstract: 'Abstract expressionism with bold colors and dynamic forms',
+            cyberpunk: 'Cyberpunk style with neon colors, futuristic elements, and dystopian atmosphere',
+            surreal: 'Surrealist dreamlike composition with impossible scenarios',
+            minimalist: 'Minimalist design with clean lines and geometric shapes',
+            photorealistic: 'Photorealistic rendering with hyper-detailed textures'
+        };
+
+        const randomPrompts = [
+            'A cosmic landscape with quantum particles forming galaxies',
+            'Mechanical flowers blooming in a digital garden',
+            'Time flowing like liquid through crystalline structures',
+            'Abstract representation of human consciousness',
+            'Bioluminescent forest in an alien world',
+            'Geometric patterns emerging from chaos',
+            'Digital phoenix rising from pixelated flames',
+            'Underwater city with Art Deco architecture'
+        ];
+
+        function selectPreset(preset) {
+            selectedPreset = preset;
+            document.querySelectorAll('.style-preset').forEach(p => p.classList.remove('active'));
+            event.target.closest('.style-preset').classList.add('active');
+        }
+
+        function updateValue(id) {
+            document.getElementById(id + '-value').textContent = document.getElementById(id).value;
+        }
+
+        function randomPrompt() {
+            const prompt = randomPrompts[Math.floor(Math.random() * randomPrompts.length)];
+            document.getElementById('prompt').value = prompt;
+        }
+
+        async function generateArt() {
+            const token = document.getElementById('github-token').value.trim();
+            const model = document.getElementById('ai-model').value;
+            const promptText = document.getElementById('prompt').value.trim();
+            const creativity = document.getElementById('creativity').value;
+
+            if (!token) {
+                alert('Please enter your GitHub token');
+                return;
+            }
+
+            if (!promptText) {
+                alert('Please enter a prompt describing your artwork');
+                return;
+            }
+
+            const canvas = document.getElementById('canvas');
+            const btn = document.getElementById('generate-btn');
+
+            btn.disabled = true;
+            btn.textContent = '⏳ Generating...';
+
+            canvas.innerHTML = '<div class="loading-spinner"></div>';
+
+            const startTime = Date.now();
+
+            try {
+                // Create detailed art description using AI
+                const fullPrompt = `Create a detailed visual description for: ${promptText}
+
+Style: ${styleDescriptions[selectedPreset]}
+Creativity Level: ${creativity}
+
+Provide a vivid, highly detailed description that could be used to generate an artwork. Include:
+- Color palette (specific colors and tones)
+- Composition and layout
+- Lighting and atmosphere
+- Textures and materials
+- Mood and emotion
+
+Format as a single descriptive paragraph optimized for AI art generation.`;
+
+                const res = await fetch('https://models.inference.ai.azure.com/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                    body: JSON.stringify({
+                        model: model,
+                        messages: [
+                            {
+                                role: 'system',
+                                content: 'You are QuantumCanvas, an expert AI art director. Create detailed visual descriptions for artwork generation.'
+                            },
+                            { role: 'user', content: fullPrompt }
+                        ],
+                        temperature: parseFloat(creativity),
+                        max_tokens: 1000
+                    })
+                });
+
+                if (!res.ok) {
+                    const err = await res.json();
+                    throw new Error(err.error?.message || 'HTTP ' + res.status);
+                }
+
+                const data = await res.json();
+                const artDescription = data.choices[0].message.content;
+
+                // Generate visual representation (text-based since we don't have image generation API)
+                const duration = ((Date.now() - startTime) / 1000).toFixed(2);
+
+                // Create artistic text visualization
+                canvas.innerHTML = `
+                    <div style="padding: 40px; max-width: 800px; text-align: center;">
+                        <div style="font-size: 3em; margin-bottom: 20px;">🎨</div>
+                        <h2 style="color: var(--primary); margin-bottom: 20px;">${promptText}</h2>
+                        <div style="background: linear-gradient(135deg, rgba(236,72,153,0.1) 0%, rgba(139,92,246,0.1) 100%);
+                                    padding: 30px; border-radius: 12px; border: 2px solid #3a3a3a;
+                                    line-height: 1.8; text-align: left;">
+                            ${artDescription}
+                        </div>
+                        <div style="margin-top: 20px; font-size: 0.9em; color: #888;">
+                            Style: ${selectedPreset.charAt(0).toUpperCase() + selectedPreset.slice(1)} |
+                            Model: ${model.split('-')[0]} |
+                            Time: ${duration}s
+                        </div>
+                        <div style="margin-top: 20px; padding: 15px; background: #2a2a2a; border-radius: 8px;">
+                            <strong style="color: var(--accent);">💡 Note:</strong> In production, this would integrate with DALL-E, Midjourney, or Stable Diffusion APIs to generate actual images.
+                        </div>
+                    </div>
+                `;
+
+                currentArtwork = {
+                    prompt: promptText,
+                    description: artDescription,
+                    style: selectedPreset,
+                    model: model
+                };
+
+                // Update stats
+                generatedCount++;
+                document.getElementById('generated-count').textContent = generatedCount;
+                document.getElementById('time').textContent = duration + 's';
+                document.getElementById('model').textContent = model.split('-')[0];
+
+                // Add to gallery
+                addToGallery(currentArtwork);
+
+            } catch (err) {
+                canvas.innerHTML = `
+                    <div style="text-align: center; color: #ef4444;">
+                        <div style="font-size: 3em; margin-bottom: 15px;">❌</div>
+                        <h3>Error Generating Artwork</h3>
+                        <p style="margin-top: 10px; color: #888;">${err.message}</p>
+                    </div>
+                `;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '🎨 Generate Artwork';
+            }
+        }
+
+        function addToGallery(artwork) {
+            const gallery = document.getElementById('gallery');
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.innerHTML = `
+                <div style="padding: 20px; text-align: center;">
+                    <div style="font-size: 2em; margin-bottom: 10px;">🎨</div>
+                    <div style="font-size: 0.85em; font-weight: 600; color: var(--primary);">
+                        ${artwork.prompt.substring(0, 30)}...
+                    </div>
+                    <div style="font-size: 0.75em; color: #888; margin-top: 5px;">
+                        ${artwork.style}
+                    </div>
+                </div>
+            `;
+            item.onclick = () => {
+                document.getElementById('canvas').innerHTML = `
+                    <div style="padding: 40px; max-width: 800px; text-align: center;">
+                        <div style="font-size: 3em; margin-bottom: 20px;">🎨</div>
+                        <h2 style="color: var(--primary); margin-bottom: 20px;">${artwork.prompt}</h2>
+                        <div style="background: linear-gradient(135deg, rgba(236,72,153,0.1) 0%, rgba(139,92,246,0.1) 100%);
+                                    padding: 30px; border-radius: 12px; border: 2px solid #3a3a3a;
+                                    line-height: 1.8; text-align: left;">
+                            ${artwork.description}
+                        </div>
+                    </div>
+                `;
+            };
+            gallery.insertBefore(item, gallery.firstChild);
+        }
+
+        function downloadArt() {
+            if (!currentArtwork) {
+                alert('Generate artwork first');
+                return;
+            }
+            alert('💾 In production: Download as PNG/SVG/PDF');
+        }
+
+        function shareArt() {
+            if (!currentArtwork) {
+                alert('Generate artwork first');
+                return;
+            }
+            alert('🔗 In production: Share link or embed code generated');
+        }
+
+        function clearCanvas() {
+            document.getElementById('canvas').innerHTML = `
+                <div class="placeholder">
+                    <div class="placeholder-icon">🎨</div>
+                    <h3>Your Masterpiece Awaits</h3>
+                    <p style="margin-top: 10px; color: #888;">
+                        Configure settings and click "Generate Artwork" to create AI-powered art
+                    </p>
+                </div>
+            `;
+            currentArtwork = null;
+        }
+    </script>
+</body>
+</html>
